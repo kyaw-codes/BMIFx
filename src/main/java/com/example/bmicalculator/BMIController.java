@@ -22,6 +22,8 @@ public class BMIController implements Initializable {
     @FXML
     private Label lblBMIResult;
     @FXML
+    private Label lblError;
+    @FXML
     private TextField tfHeight;
     @FXML
     private TextField tfWeight;
@@ -31,26 +33,8 @@ public class BMIController implements Initializable {
 
     @FXML
     void calculateBMI() {
-        double weight;
-        double height;
-
-        int selectedWeightIndex = cmbWeight.getSelectionModel().getSelectedIndex();
-        int selectedHeightIndex = cmbHeight.getSelectionModel().getSelectedIndex();
-
-        weight = tfWeight.getText().isEmpty() ? 0 : Double.parseDouble(tfWeight.getText());
-
-        if (selectedWeightIndex != 0) {
-            // Convert kilogram to lbs
-            weight = convertKgToLbs(weight);
-        }
-
-        if (selectedHeightIndex == 0) {
-            height = convertFeetIntoInches(tfHeight.getText());
-        } else {
-            // cm to inches
-            double cmValue = tfHeight.getText().isEmpty() ? 0 : Double.parseDouble(tfHeight.getText());
-            height = convertCmToInches(cmValue);
-        }
+        double weight = calculateValidWeight();
+        double height = calculateValidHeight();
 
         double bmiIndex = (weight / (height * height)) * 703;
 
@@ -67,6 +51,34 @@ public class BMIController implements Initializable {
         // Set default selected value
         cmbWeight.getSelectionModel().select(0);
         cmbHeight.getSelectionModel().select(0);
+    }
+
+    private double calculateValidWeight() {
+        double weight;
+        int selectedWeightIndex = cmbWeight.getSelectionModel().getSelectedIndex();
+        weight = tfWeight.getText().isEmpty() ? 0 : Double.parseDouble(tfWeight.getText());
+
+        if (selectedWeightIndex != 0) {
+            // Convert kilogram to lbs
+            weight = convertKgToLbs(weight);
+        }
+
+        return weight;
+    }
+
+    private double calculateValidHeight() {
+        double height;
+
+        int selectedHeightIndex = cmbHeight.getSelectionModel().getSelectedIndex();
+
+        if (selectedHeightIndex == 0) {
+            height = convertFeetIntoInches(tfHeight.getText());
+        } else {
+            // cm to inches
+            double cmValue = tfHeight.getText().isEmpty() ? 0 : Double.parseDouble(tfHeight.getText());
+            height = convertCmToInches(cmValue);
+        }
+        return height;
     }
 
     private double convertKgToLbs(double kgValue) {

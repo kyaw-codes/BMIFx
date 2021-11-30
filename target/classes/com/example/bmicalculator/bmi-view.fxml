@@ -33,12 +33,13 @@
           <ColumnConstraints hgrow="SOMETIMES" maxWidth="188.95745849609375" minWidth="10.0" prefWidth="187.76028442382812" />
         </columnConstraints>
         <rowConstraints>
-          <RowConstraints maxHeight="57.877105712890625" minHeight="10.0" prefHeight="17.1258544921875" vgrow="SOMETIMES" />
-          <RowConstraints maxHeight="65.8741455078125" minHeight="10.0" prefHeight="44.154640197753906" vgrow="SOMETIMES" />
-            <RowConstraints maxHeight="76.7319564819336" minHeight="10.0" prefHeight="46.57731628417969" vgrow="SOMETIMES" />
-            <RowConstraints maxHeight="55.70465087890625" minHeight="1.8949737548828125" prefHeight="43.59149169921875" vgrow="SOMETIMES" />
-            <RowConstraints maxHeight="106.10502624511719" minHeight="10.0" prefHeight="53.59149169921875" vgrow="SOMETIMES" />
-          <RowConstraints maxHeight="52.724884033203125" minHeight="10.0" prefHeight="43.40850830078125" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="65.8741455078125" minHeight="10.0" prefHeight="17.87651824951172" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="65.8741455078125" minHeight="10.0" prefHeight="38.389564514160156" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="57.877105712890625" minHeight="10.0" prefHeight="23.628265380859375" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="76.7319564819336" minHeight="10.0" prefHeight="38.27435302734375" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="66.51304626464844" minHeight="1.8949737548828125" prefHeight="34.72564697265625" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="106.10502624511719" minHeight="10.0" prefHeight="49.353912353515625" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="52.724884033203125" minHeight="10.0" prefHeight="45.592620849609375" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
             <HBox alignment="CENTER_LEFT" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1">
@@ -55,11 +56,12 @@
                   </Label>
                </children>
             </HBox>
-            <TextField fx:id="tfWeight" promptText="Enter your weight" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-            <TextField fx:id="tfHeight" promptText="Enter your height" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-            <ComboBox fx:id="cmbWeight" prefHeight="25.0" prefWidth="78.0" GridPane.columnIndex="2" GridPane.rowIndex="2" />
-            <ComboBox fx:id="cmbHeight" prefHeight="25.0" prefWidth="78.0" GridPane.columnIndex="2" GridPane.rowIndex="3" />
-            <Button mnemonicParsing="false" onAction="#calculateBMI" prefHeight="33.0" prefWidth="307.0" style="-fx-background-color: orange;" text="Calculate BMI" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+            <TextField fx:id="tfWeight" promptText="Enter your weight" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <TextField fx:id="tfHeight" promptText="Enter your height" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+            <ComboBox fx:id="cmbWeight" prefHeight="25.0" prefWidth="78.0" GridPane.columnIndex="2" GridPane.rowIndex="3" />
+            <ComboBox fx:id="cmbHeight" prefHeight="25.0" prefWidth="78.0" GridPane.columnIndex="2" GridPane.rowIndex="4" />
+            <Button mnemonicParsing="false" onAction="#calculateBMI" prefHeight="33.0" prefWidth="307.0" style="-fx-background-color: orange;" text="Calculate BMI" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+            <Label fx:id="lblError" prefHeight="17.0" prefWidth="293.0" textFill="#f50000" GridPane.columnIndex="1" GridPane.rowIndex="2" />
          </children>
       </GridPane>
    </children>
