@@ -33,13 +33,19 @@ public class BMIController implements Initializable {
 
     @FXML
     void calculateBMI() {
-        double weight = calculateValidWeight();
-        double height = calculateValidHeight();
+        try {
+            double weight = calculateValidWeight();
+            double height = calculateValidHeight();
 
-        double bmiIndex = (weight / (height * height)) * 703;
+            double bmiIndex = (weight / (height * height)) * 703;
 
-        displayResult(bmiIndex);
-        resetInputs();
+            displayResult(bmiIndex);
+            resetViewState();
+        } catch (BMIException e) {
+            displayError(e.getMessage());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
@@ -53,17 +59,25 @@ public class BMIController implements Initializable {
         cmbHeight.getSelectionModel().select(0);
     }
 
-    private double calculateValidWeight() {
-        double weight;
+    private void displayError(String message) {
+        lblError.setText(message);
+        lblBMIResult.setText("");
+        lblBMIIndex.setText("");
+    }
+
+    private double calculateValidWeight() throws BMIException {
         int selectedWeightIndex = cmbWeight.getSelectionModel().getSelectedIndex();
-        weight = tfWeight.getText().isEmpty() ? 0 : Double.parseDouble(tfWeight.getText());
 
-        if (selectedWeightIndex != 0) {
-            // Convert kilogram to lbs
-            weight = convertKgToLbs(weight);
+        try {
+            double weight = tfWeight.getText().isEmpty() ? 0 : Double.parseDouble(tfWeight.getText());
+            if (selectedWeightIndex != 0) {
+                // Convert kilogram to lbs
+                weight = convertKgToLbs(weight);
+            }
+            return weight;
+        } catch(Exception e) {
+            throw new BMIException("Invalid weight");
         }
-
-        return weight;
     }
 
     private double calculateValidHeight() {
@@ -119,11 +133,12 @@ public class BMIController implements Initializable {
         }
     }
 
-    private void resetInputs() {
+    private void resetViewState() {
         tfHeight.clear();
         tfWeight.clear();
         cmbWeight.getSelectionModel().select(0);
         cmbHeight.getSelectionModel().select(0);
+        lblError.setText("");
     }
 
 }
